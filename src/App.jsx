@@ -1,5 +1,16 @@
 import { useEffect, useState } from "react";
-import { fetchImages } from "./api";
+export async function fetchImages(breed) {
+  try {
+  const response = await fetch(
+    `https://dog.ceo/api/breed/${breed}/images/random/12`
+  );
+  const data = await response.json();
+  return data.message;
+  } catch (error) {
+  console.error(error ?? "データの取得に失敗しました");
+  alert(error ?? "データの取得に失敗しました");
+  }
+}
 
 function Header() {
   return (
